@@ -1,0 +1,30 @@
+.control_icons {
+  position: absolute;
+  right: -19px;
+  top: 40%;
+  font-size: 1.7em;
+  color: #6a7277;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.control_icons svg {
+  background: #fff;
+  cursor: pointer;
+  border: 2px solid #ddd;
+  border-radius: 50%;
+  margin: 5px;
+}
+.plus_icon:hover {
+  color: #0d6efd;
+}
+.minus_icon:hover{
+  color: crimson;
+}
+.check_icon:hover {
+  color: rgb(16, 167, 24);
+}
+.control_icons svg:active {
+  background: #000;
+}
