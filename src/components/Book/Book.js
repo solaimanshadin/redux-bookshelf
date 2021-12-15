@@ -13,7 +13,8 @@ import {
   addToFinishedList,
   addToReadingList,
   removeFromReadingList,
-} from "../../redux/actions/bookAction";
+} from "../../redux/slices/bookSlice";
+
 import styles from "./book.module.css";
 const SingleBook = (props) => {
   const { title, author, coverImageUrl, synopsis, id } = props.book;
