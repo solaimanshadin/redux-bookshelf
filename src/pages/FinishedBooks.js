@@ -1,16 +1,17 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import Book from '../components/Book/Book';
 import PageLayout from "../components/PageLayout/PageLayout";
 
 const FinishedBooks = () => {
+  const books = useSelector(state => state.books.finishedList)
   return (
-    <PageLayout>
-      <p>
-        Hey there! This is where books will go when you've finished reading
-        them. Get started by heading over to the <Link to='/'>Discover</Link>{" "}
-        page to add books to your list.
-      </p>
-    </PageLayout>
+      <PageLayout>
+            {
+              books.length>0 ?
+                books.map((book) => (<Book key={book.id} book={book} />)) : <p style={{textAlign:'center'}}>No Books Found</p>
+            }
+        </PageLayout>
   );
 };
 
