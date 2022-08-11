@@ -1,15 +1,17 @@
-import React from 'react';
-import Book from '../components/Book/Book';
-import books from '../fakeData/books.json'
-import PageLayout from '../components/PageLayout/PageLayout';
+import React from 'react'
+import Book from '../components/Book/Book'
+import PageLayout from '../components/PageLayout/PageLayout'
+import { useSelector } from 'react-redux/es/exports'
 const Discover = () => {
-    return (
-        <PageLayout>
-            {
-                books.map((book) => (<Book key={book.id} book={book} />))
-            }
-        </PageLayout>
-    );
-};
+  const Books = useSelector((state) => state.books.DescoverCollection)
 
-export default Discover;
+  return (
+    <PageLayout>
+      {Books.map((book) => (
+        <Book key={book.id} book={book} />
+      ))}
+    </PageLayout>
+  )
+}
+
+export default Discover
