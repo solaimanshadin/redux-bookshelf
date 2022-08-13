@@ -1,6 +1,9 @@
+.hiddenDiv{
+  display: none;
+}
 .control_icons {
   position: absolute;
-  right: -19px;
+  right: -20px;
   top: 40%;
   font-size: 1.7em;
   color: #6a7277;
