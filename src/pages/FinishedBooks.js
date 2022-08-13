@@ -5,7 +5,9 @@ import PageLayout from '../components/PageLayout/PageLayout'
 import Book from '../components/Book/Book'
 
 const FinishedBooks = () => {
-  const { FinishedCollection } = useSelector((state) => state.books)
+  const FinishedCollection = useSelector(
+    (state) => state.books.FinisheBookCollection,
+  )
 
   return (
     <PageLayout>

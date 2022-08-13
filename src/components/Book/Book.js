@@ -1,26 +1,23 @@
 import React from 'react'
 import { HiPlusCircle, HiMinusCircle, HiCheckCircle } from 'react-icons/hi'
-import { useDispatch } from 'react-redux'
-import {
-  AddToRedaingList,
-  RemoveFromReadingList,
-  fineshedreading,
-} from '../Redux/action'
+import { useDispatch, useSelector } from 'react-redux'
 import styles from './book.module.css'
-import { useSelector } from 'react-redux/es/exports'
+import {
+  AddtoReadingList,
+  RemoveFromReadingList,
+  FinishedBook,
+} from '../redux/BookSlice'
 const SingleBook = (props) => {
+  const Dispatch = useDispatch()
+
   const { title, author, coverImageUrl, synopsis } = props?.book
 
-  const Despatch = useDispatch()
+  const ReadingList = useSelector((state) => state.books.ReadingCollection)
+  const FinishedList = useSelector((state) => state.books.FinisheBookCollection)
 
-  const { ReadingCollection } = useSelector((state) => state.books)
-  const { FinishedCollection } = useSelector((state) => state.books)
+  const isSelected = ReadingList.find((book) => book.id === props.book.id)
+  const isFinished = FinishedList.find((book) => book.id === props.book.id)
 
-  const isTrue = ReadingCollection.find((book) => book?.id === props.book?.id)
-  const isItFinseshed = FinishedCollection.find(
-    (book) => book.id === props?.book?.id,
-  )
-  console.log(ReadingCollection, props?.book?.id, isTrue)
   return (
     <div className="card d-flex mb-3 p-3" style={{ position: 'relative' }}>
       <div className="row">
@@ -35,27 +32,29 @@ const SingleBook = (props) => {
           </div>
         </div>
       </div>
-      <div className={isItFinseshed ? styles.hiddenDiv : styles.control_icons}>
-        {isTrue ? (
+
+      <div className={isFinished ? styles.hiddenDiv : styles?.control_icons}>
+        {isSelected ? (
           <>
             <HiCheckCircle
+              onClick={() => Dispatch(FinishedBook(props.book))}
               title="Mark as Finish"
-              onClick={() => Despatch(fineshedreading(props?.book))}
               className={styles.check_icon}
             />
             <HiMinusCircle
+              onClick={() => Dispatch(RemoveFromReadingList(props.book))}
               title="Remove from list"
-              onClick={() => Despatch(RemoveFromReadingList(props?.book?.id))}
               className={styles.minus_icon}
             />
           </>
         ) : (
           <HiPlusCircle
+            onClick={() => Dispatch(AddtoReadingList(props.book))}
             title="Add to Reading"
-            onClick={() => Despatch(AddToRedaingList(props?.book))}
             className={styles.plus_icon}
           />
         )}
+        ,
       </div>
     </div>
   )

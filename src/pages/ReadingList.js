@@ -5,8 +5,10 @@ import { useSelector } from 'react-redux/es/exports'
 import Book from '../components/Book/Book'
 
 const ReadingList = () => {
+  const newData = useSelector((state) => state.books.StraingData)
+
   const Books = useSelector((state) => state.books.ReadingCollection)
-  console.log(Books)
+
   return (
     <PageLayout>
       {Books.length === 0 && (

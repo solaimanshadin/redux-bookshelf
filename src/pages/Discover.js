@@ -1,13 +1,22 @@
 import React from 'react'
+import { useEffect } from 'react'
+import { useSelector } from 'react-redux'
+
 import Book from '../components/Book/Book'
 import PageLayout from '../components/PageLayout/PageLayout'
-import { useSelector } from 'react-redux/es/exports'
+import { LoadData } from '../components/redux/BookSlice'
+import { useDispatch } from 'react-redux/es/exports'
 const Discover = () => {
-  const Books = useSelector((state) => state.books.DescoverCollection)
+  const Dispatch = useDispatch()
+  useEffect(() => {
+    Dispatch(LoadData())
+  }, [Dispatch])
+
+  const Descover = useSelector((state) => state.books.DiscoverCollection)
 
   return (
     <PageLayout>
-      {Books.map((book) => (
+      {Descover.map((book) => (
         <Book key={book.id} book={book} />
       ))}
     </PageLayout>
